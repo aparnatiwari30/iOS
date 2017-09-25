@@ -9,21 +9,25 @@
 /* Begin PBXBuildFile section */
 		1C8CEF0B82B1A0CE3332B8D1 /* Pods_ShoppingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2296A6ED27C9A3BEF6B2D2AE /* Pods_ShoppingApp.framework */; };
 		3E4F9FB51F79626600040D34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F9FB41F79626600040D34 /* AppDelegate.swift */; };
-		3E4F9FB71F79626600040D34 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F9FB61F79626600040D34 /* ViewController.swift */; };
 		3E4F9FBA1F79626600040D34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E4F9FB81F79626600040D34 /* Main.storyboard */; };
 		3E4F9FBC1F79626600040D34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E4F9FBB1F79626600040D34 /* Assets.xcassets */; };
 		3E4F9FBF1F79626600040D34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E4F9FBD1F79626600040D34 /* LaunchScreen.storyboard */; };
+		3E4F9FCB1F796FEA00040D34 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F9FCA1F796FEA00040D34 /* ShopViewController.swift */; };
+		3E4F9FCD1F79700A00040D34 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F9FCC1F79700A00040D34 /* CartViewController.swift */; };
+		3E4F9FCF1F7973B800040D34 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4F9FCE1F7973B800040D34 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2296A6ED27C9A3BEF6B2D2AE /* Pods_ShoppingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShoppingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E4F9FB11F79626500040D34 /* ShoppingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E4F9FB41F79626600040D34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3E4F9FB61F79626600040D34 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3E4F9FB91F79626600040D34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3E4F9FBB1F79626600040D34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E4F9FBE1F79626600040D34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E4F9FC01F79626600040D34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E4F9FCA1F796FEA00040D34 /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
+		3E4F9FCC1F79700A00040D34 /* CartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		3E4F9FCE1F7973B800040D34 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8CAE9ED94207A452EC8E68B5 /* Pods-ShoppingApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppingApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShoppingApp/Pods-ShoppingApp.debug.xcconfig"; sourceTree = "<group>"; };
 		F68ACB835EACA88F0014F451 /* Pods-ShoppingApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppingApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShoppingApp/Pods-ShoppingApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,14 +74,40 @@
 		3E4F9FB31F79626600040D34 /* ShoppingApp */ = {
 			isa = PBXGroup;
 			children = (
-				3E4F9FB41F79626600040D34 /* AppDelegate.swift */,
-				3E4F9FB61F79626600040D34 /* ViewController.swift */,
-				3E4F9FB81F79626600040D34 /* Main.storyboard */,
+				3E4F9FC61F796EC300040D34 /* Model */,
+				3E4F9FC81F796F2300040D34 /* Controller */,
+				3E4F9FC71F796F0C00040D34 /* View */,
 				3E4F9FBB1F79626600040D34 /* Assets.xcassets */,
-				3E4F9FBD1F79626600040D34 /* LaunchScreen.storyboard */,
 				3E4F9FC01F79626600040D34 /* Info.plist */,
 			);
 			path = ShoppingApp;
+			sourceTree = "<group>";
+		};
+		3E4F9FC61F796EC300040D34 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3E4F9FCE1F7973B800040D34 /* Constants.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		3E4F9FC71F796F0C00040D34 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3E4F9FBD1F79626600040D34 /* LaunchScreen.storyboard */,
+				3E4F9FB81F79626600040D34 /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		3E4F9FC81F796F2300040D34 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3E4F9FB41F79626600040D34 /* AppDelegate.swift */,
+				3E4F9FCA1F796FEA00040D34 /* ShopViewController.swift */,
+				3E4F9FCC1F79700A00040D34 /* CartViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		5A510508508C109B30326C88 /* Frameworks */ = {
@@ -211,8 +241,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E4F9FB71F79626600040D34 /* ViewController.swift in Sources */,
+				3E4F9FCB1F796FEA00040D34 /* ShopViewController.swift in Sources */,
+				3E4F9FCD1F79700A00040D34 /* CartViewController.swift in Sources */,
 				3E4F9FB51F79626600040D34 /* AppDelegate.swift in Sources */,
+				3E4F9FCF1F7973B800040D34 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

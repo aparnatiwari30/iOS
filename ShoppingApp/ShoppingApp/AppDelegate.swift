@@ -7,15 +7,34 @@
 //
 
 import UIKit
+import ReachabilitySwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var session:URLSession!
+    let internetReachability:Reachability = Reachability.init(hostname: "www.google.com")!
+    var isInternetAvailable = false
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        UIApplication.shared.statusBarStyle = .lightContent
+        
+        //Reachability
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reachabilityChanged),name: ReachabilityChangedNotification,object: internetReachability)
+        do{
+            try internetReachability.startNotifier()
+        }catch{
+            print("could not start reachability notifier")
+        }
+        
+        // Network session
+        let sessionConfiguration = URLSessionConfiguration.default
+        session = URLSession(configuration: sessionConfiguration)
+        
+
         return true
     }
 
@@ -40,7 +59,70 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    // MARK: - reachability
+    func reachabilityChanged(note: NSNotification) {
+        
+        let reachability = note.object as! Reachability
+        
+        if reachability.isReachable {
+            if reachability.isReachableViaWiFi {
+                isInternetAvailable = true
+                print("Reachable via WiFi")
+            } else {
+                isInternetAvailable = true
+                print("Reachable via Cellular")
+            }
+        } else {
+            isInternetAvailable = false
+            print("Network not reachable")
+        }
+    }
+
+    // MARK: - API call
+    func performGet(requestStr: String, query:String, completion: @escaping (_ data: Any?) -> Void) {
+        DispatchQueue.global(qos: .background).async {
+            var urlStr = ""
+            if query != "" {
+                urlStr = "\(Constants.API_HOST)\(requestStr)?\(query)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+            } else {
+                urlStr = "\(Constants.API_HOST)\(requestStr)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+            }
+            let targetURL = URL.init(string: urlStr)
+            let request = NSMutableURLRequest(url: targetURL! as URL)
+            request.httpMethod = "GET"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            let task = self.session.dataTask(with: request as URLRequest) { (data, resp, error) -> Void in
+                DispatchQueue.main.async(execute: { () -> Void in
+                    if (data != nil) {
+                        let json = self.convertDataToJsonObject(data!)
+                        completion(json)
+                    } else {
+                        print(error ?? "error")
+                        completion(nil)
+                    }
+                })
+                return()
+            }
+            
+            task.resume()
+        }
+    }
+    
+    func convertDataToJsonObject(_ data:Data) -> Any! {
+        do {
+            let data = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
+            return data
+        } catch let error {
+            print(error)
+            return nil
+        }
+    }
 
 
 }
+
+let APPDELEGATE = UIApplication.shared.delegate as! AppDelegate
+
+
 
