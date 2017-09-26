@@ -2,7 +2,7 @@
 //  Constants.swift
 //  ShoppingApp
 //
-//  Created by MRV Computers on 9/25/17.
+//  Created by Aparna Tiwari on 9/25/17.
 //  Copyright © 2017 AT. All rights reserved.
 //
 

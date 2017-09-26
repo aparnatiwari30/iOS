@@ -2,7 +2,7 @@
 //  ShopViewController.swift
 //  ShoppingApp
 //
-//  Created by MRV Computers on 9/25/17.
+//  Created by Aparna Tiwari on 9/25/17.
 //  Copyright © 2017 AT. All rights reserved.
 //
 
@@ -24,6 +24,11 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
         super.viewWillAppear(animated)
         getProductData()
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        collectionView.reloadData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -35,6 +40,7 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func getProductData() {
         if !APPDELEGATE.isInternetAvailable {
             UIAlertView.init(title: nil, message: "No internet connection.", delegate: self, cancelButtonTitle: "OK").show()
+            self.loader.stopAnimating()
             return
         }
         loader.startAnimating()
@@ -78,13 +84,23 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "product_cell", for: indexPath) as! ProductCVCell
         let productDetail = productArray[indexPath.row] as! Dictionary<String, Any>
-        cell.nameLb.text = productDetail["productname"] as? String
-        cell.priceLb.text = "Price: \(productDetail["price"] as! String)"
-        cell.vendorNameLb.text = productDetail["vendorname"] as? String
-        cell.vendorAddressLb.text = productDetail["vendoraddress"] as? String
+        if let productname = productDetail["productname"] as? String {
+            cell.nameLb.text = productname
+        }
+        if let price = productDetail["price"] as? String {
+            cell.priceLb.text = "Price: \(price)"
+        }
+        if let vendorname = productDetail["vendorname"] as? String {
+            cell.vendorNameLb.text = vendorname
+        }
         
-        let imgURL = productDetail["productImg"] as? String
-        cell.productImgView.sd_setImage(with: URL.init(string: imgURL!), placeholderImage: UIImage.init(named: "default"))
+        if let vendoraddress = productDetail["vendoraddress"] as? String {
+            cell.vendorAddressLb.text = vendoraddress
+        }
+        
+        if let imgURL = productDetail["productImg"] as? String {
+            cell.productImgView.sd_setImage(with: URL.init(string: imgURL), placeholderImage: UIImage.init(named: "default"))
+        }
         cell.AddToCartBtn.tag = indexPath.row
         
         return cell
@@ -92,9 +108,40 @@ class ShopViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let w = (self.view.frame.width/2) - 15
+        var w:CGFloat = 0
+        if self.view.frame.width < self.view.frame.height {
+            w = (self.view.frame.width/2) - 15
+        } else {
+            w = (self.view.frame.width/3) - 15
+        }
         let h:CGFloat = 250.0
         return CGSize(width: w, height: h)
+    }
+    
+    //MARK: - Actions
+    
+    @IBAction func addToCart(_ sender: Any) {
+        let btn = sender as! UIButton
+        var productDetail = productArray[(btn.tag)]  as! Dictionary<String, Any>
+        productDetail = prepareDataForDB(dict: productDetail)
+        
+        let msgStr = DBHelperClass.insertRecords2ProductTable(productDetail: productDetail)
+        
+        UIAlertView.init(title: nil, message: msgStr, delegate: self, cancelButtonTitle: "OK").show()
+        
+    }
+    
+    func prepareDataForDB(dict:Dictionary<String, Any>) -> Dictionary<String, Any> {
+        var returnDict = Dictionary<String, Any>.init()
+        
+        returnDict["name"] = dict["productname"]
+        returnDict["price"] = dict["price"]
+        returnDict["vendor_name"] = dict["vendorname"]
+        returnDict["vendor_address"] = dict["vendoraddress"]
+        returnDict["image_url"] = dict["productImg"]
+        returnDict["phone_number"] = dict["phoneNumber"]
+        
+        return returnDict
     }
     
 }

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoppingApp/ShopViewController.swift"
-            timestampString = "528056156.286634"
+            timestampString = "528147564.212989"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
             landmarkName = "getProductData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,12 +26,92 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShoppingApp/AppDelegate.swift"
-            timestampString = "528060157.803489"
+            timestampString = "528139101.248195"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "performGet(requestStr:query:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShoppingApp/DBHelperClass.swift"
+            timestampString = "528139362.109135"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "insertRecords2ProductTable(productDetail:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static ShoppingApp.DBHelperClass.insertRecords2ProductTable (productDetail : Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; Swift.String"
+                  moduleName = "ShoppingApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mrvcomputers/Documents/mydoc/data/DemoApps/iOS/ShoppingApp/ShoppingApp/DBHelperClass.swift"
+                  timestampString = "528140010.073895"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "72">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static ShoppingApp.DBHelperClass.(insertRecords2ProductTable (productDetail : Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; Swift.String).(closure #1)"
+                  moduleName = "ShoppingApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mrvcomputers/Documents/mydoc/data/DemoApps/iOS/ShoppingApp/ShoppingApp/DBHelperClass.swift"
+                  timestampString = "528140010.077934"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "68"
+                  endingLineNumber = "68"
+                  offsetFromSymbolStart = "27">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShoppingApp/DBHelperClass.swift"
+            timestampString = "528139368.144816"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "insertRecords2ProductTable(productDetail:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShoppingApp/CartViewController.swift"
+            timestampString = "528148668.764659"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "tableView(_:viewForFooterInSection:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

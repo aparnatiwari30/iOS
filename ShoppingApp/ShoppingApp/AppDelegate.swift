@@ -30,6 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("could not start reachability notifier")
         }
         
+        //Database INIT
+        DBHelperClass.copyDataBaseFile()
+        
         // Network session
         let sessionConfiguration = URLSessionConfiguration.default
         session = URLSession(configuration: sessionConfiguration)
